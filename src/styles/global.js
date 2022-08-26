@@ -1,14 +1,22 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import {PRIMARY_COLOR} from './constant';
-const styles = StyleSheet.create({
+import {PRIMARY_COLOR} from './Constant';
+const Styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: '#E5E5E5',
   },
   header: {
     height: 210,
+    justifyContent: 'center',
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 26,
+    color: PRIMARY_COLOR,
+    fontWeight: 'bold',
   },
   content: {
+    height: Dimensions.get('screen').height - 282,
     elevation: 3,
     flex: 3,
     backgroundColor: '#fff',
@@ -47,6 +55,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
   },
+  PinInput: {
+    borderBottomWidth: 1,
+    width: 50,
+  },
 });
 
-export default styles;
+export default Styles;
