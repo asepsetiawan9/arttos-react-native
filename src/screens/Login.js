@@ -37,7 +37,7 @@ const Login = () => (
         </View>
 
         <View style={styleLocal.inputWrapper}>
-          <ButtonAuth nameText="Login" />
+          <ButtonAuth NavigateTo="HomeStack" nameText="Login" />
         </View>
         <View style={{alignItems: 'center'}}>
           <Text>Don’t have an account? Let’s Sign Up</Text>
