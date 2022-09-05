@@ -6,9 +6,20 @@ import styles from '../styles/GlobalDashboard';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imageUser from '../assets/user.png';
 import {PRIMARY_COLOR} from './Constant';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProfile} from '../redux/asyncActions/profile';
 
 const Home = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const token = useSelector(state => state.auth.token);
+  const profile = useSelector(state => state.profile.data);
+
+  React.useEffect(() => {
+    dispatch(getProfile(token));
+    // console.log('ini data profile', profile.balance);
+  }, []);
   return (
     // <View style={styles.root}>
     //   <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
@@ -20,11 +31,19 @@ const Home = () => {
         <View style={styles.headerContent}>
           <View style={styles.headerContent1}>
             <View style={styles.imageHeader}>
-              <Image source={imageUser} style={styles.imageHeader} />
+              <Image
+                source={{uri: profile.picture}}
+                style={{
+                  width: 80,
+                  height: 80,
+                  aspectRatio: 1,
+                  borderRadius: 10,
+                }}
+              />
             </View>
             <View>
               <Text style={{fontSize: 14}}>Balance</Text>
-              <Text style={styles.balance}>Rp120.000</Text>
+              <Text style={styles.balance}>Rp {profile.balance}</Text>
             </View>
           </View>
           <View>

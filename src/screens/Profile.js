@@ -12,11 +12,16 @@ import CardTopup from '../components/CardTopup';
 import imageUser from '../assets/user.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../redux/reducers/auth';
 
 const Profile = () => {
   const dispatch = useDispatch();
+
+  const token = useSelector(state => state.auth.token);
+  const profile = useSelector(state => state.profile.data);
+  // console.log('ini profile', profile.fullname);
+
   const onLogout = () => {
     dispatch(logout());
   };
@@ -28,16 +33,24 @@ const Profile = () => {
       <ScrollView>
         <View style={{paddingVertical: 20, paddingHorizontal: 20}}>
           <View style={{paddingVertical: 20, alignItems: 'center'}}>
-            <Image source={imageUser} />
+            <Image
+              source={{uri: profile.picture}}
+              style={{
+                width: 80,
+                height: 80,
+                aspectRatio: 1,
+                borderRadius: 10,
+              }}
+            />
             <Text style={{fontSize: 16, paddingTop: 10}}>
               <Icon name="pencil" />
               Edit
             </Text>
             <Text
               style={{fontSize: 18, fontWeight: 'bold', paddingVertical: 10}}>
-              How to Top-Up
+              {profile.fullname}
             </Text>
-            <Text style={{fontSize: 16}}>+62 813-9387-7946 </Text>
+            <Text style={{fontSize: 16}}>{} </Text>
           </View>
           <View style={{paddingVertical: 10}}>
             <TouchableOpacity

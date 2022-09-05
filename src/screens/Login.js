@@ -57,7 +57,7 @@ const Login = ({navigation}) => {
           <View style={styleLocal.inputWrapper}>
             <View style={stylesForm.wrapper}>
               <View style={stylesForm.iconWrapper}>
-                <Icon name="user" size={20} color="#A9A9A9" />
+                <Icon name="envelope" size={20} color="#A9A9A9" />
               </View>
               <View style={stylesForm.inputWrapper}>
                 <TextInput

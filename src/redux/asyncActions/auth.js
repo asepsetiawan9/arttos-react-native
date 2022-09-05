@@ -30,6 +30,7 @@ export const register = createAsyncThunk('auth/register', async request => {
         'content-type': 'application/x-www-form-urlencoded',
       },
     });
+    console.log('ini data bacend', data);
     result.successMsg = data.message;
     return result;
   } catch (e) {

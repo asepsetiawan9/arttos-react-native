@@ -5,9 +5,11 @@ import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
 import {PRIMARY_COLOR} from '../styles/Constant';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {useDispatch, useSelector} from 'react-redux';
 
 const PhoneManage = () => {
   const navigation = useNavigation();
+  const profile = useSelector(state => state.profile.data);
   return (
     // <View style={styles.root}>
     //   <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
@@ -41,7 +43,7 @@ const PhoneManage = () => {
             <View style={styles.cardConfirm}>
               <Text style={{fontSize: 14}}>Primary</Text>
               <Text style={{fontSize: 18, fontWeight: '700'}}>
-                +62 813-9387-7946
+                {profile.phone ? profile.phone : 'Press Icon For Manage Phone'}
               </Text>
             </View>
             <TouchableOpacity onPress={() => navigation.navigate('AddPhone')}>

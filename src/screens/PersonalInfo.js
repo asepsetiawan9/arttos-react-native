@@ -1,12 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
 import {PRIMARY_COLOR} from '../styles/Constant';
 
 const PersonalInfo = () => {
+  const profile = useSelector(state => state.profile.data);
+  // console.log('cek sassssssssssssssssstuu', profile);
   const navigation = useNavigation();
   return (
     // <View style={styles.root}>
@@ -32,14 +34,16 @@ const PersonalInfo = () => {
             <View style={styles.cardWrap}>
               <View style={styles.cardConfirm}>
                 <Text style={{fontSize: 14}}>First Name</Text>
-                <Text style={{fontSize: 18, fontWeight: '700'}}>Robert</Text>
+                <Text style={{fontSize: 18, fontWeight: '700'}}>
+                  {profile.fullname ? profile.fullname : 'Your Name'}
+                </Text>
               </View>
             </View>
             <View style={{paddingRight: 20}} />
             <View style={styles.cardWrap}>
               <View style={styles.cardConfirm}>
                 <Text style={{fontSize: 14}}>Last Name</Text>
-                <Text style={{fontSize: 18, fontWeight: '700'}}>Chandler</Text>
+                <Text style={{fontSize: 18, fontWeight: '700'}}>-</Text>
               </View>
             </View>
           </View>
@@ -56,7 +60,7 @@ const PersonalInfo = () => {
             <View style={styles.cardConfirm}>
               <Text style={{fontSize: 14}}>Verified E-mail</Text>
               <Text style={{fontSize: 18, fontWeight: '700'}}>
-                pewdiepie1@gmail.com
+                {profile.email ? profile.email : 'Your Email Not Found'}
               </Text>
             </View>
           </View>
@@ -74,7 +78,7 @@ const PersonalInfo = () => {
             <View style={styles.cardConfirm}>
               <Text style={{fontSize: 14}}>Phone Number</Text>
               <Text style={{fontSize: 18, fontWeight: '700'}}>
-                +62 813-9387-7946
+                {profile.phone ? profile.phone : 'Your Phone Number Not Found'}
               </Text>
             </View>
             <TouchableOpacity
