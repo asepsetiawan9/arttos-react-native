@@ -3,12 +3,17 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeTab from './HomeTab';
 import Search from './Search';
-import {PRIMARY_COLOR} from './Constant';
+import {PRIMARY_COLOR} from '../styles/Constant';
 import TransConfirm from './TransConfirm';
 import TransHistory from './TransHistory';
 import TransInput from './TransInput';
 import PinConfirm from './PinConfirm';
 import Confirm from './Confirm';
+import PersonalInfo from './PersonalInfo';
+import PhoneManage from './PhoneManage';
+import AddPhone from './AddPhone';
+import PassChange from './PassChange';
+import PinChange from './PinChange';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +66,51 @@ const HomeStack = () => {
         options={{headerShown: false}}
         name="Confirm"
         component={Confirm}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="PersonalInfo"
+        component={PersonalInfo}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="PhoneManage"
+        component={PhoneManage}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="AddPhone"
+        component={AddPhone}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="PassChange"
+        component={PassChange}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="PinChange"
+        component={PinChange}
       />
       {/*<Stack.Screen
         options={{headerShown: true}}

@@ -1,9 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Text, View} from 'react-native';
-import React from 'react';
+import {Text, View, Switch} from 'react-native';
+import React, {useState} from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const CardTopup = ({number, content}) => {
-  const [showText, setShow] = React.useState(false);
+const CardTopup = ({number, content, nameIcon, switchBtn}) => {
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <View
       style={{
@@ -11,6 +13,8 @@ const CardTopup = ({number, content}) => {
         backgroundColor: '#fff',
         alignItems: 'center',
         borderRadius: 15,
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
       }}>
       <Text
         style={{
@@ -23,6 +27,14 @@ const CardTopup = ({number, content}) => {
         {number}
       </Text>
       <Text style={{fontSize: 16}}> {content}</Text>
+      <Icon name={nameIcon} />
+      {/* <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      /> */}
     </View>
   );
 };

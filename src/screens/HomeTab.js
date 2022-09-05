@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -8,6 +9,7 @@ import Input from '../components/Input';
 import TransFind from './TransFind';
 import TransDetails from './TransDetails';
 import TopUp from './TopUp';
+import Profile from './Profile';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -67,7 +69,7 @@ const HomeTab = () => {
           ),
         }}
         name="Profile"
-        component={Home}
+        component={Profile}
       />
       <BottomTab.Screen
         options={{
@@ -77,15 +79,24 @@ const HomeTab = () => {
           header: ({navigation}) => (
             <View style={styles.header}>
               <View style={styles.headerUser}>
-                <View style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                  <Image source={imageUser} />
+                <View
+                  style={{
+                    borderRadius: 15,
+                    backgroundColor: '#EBEEF2',
+                    width: 50,
+                    height: 50,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: 20,
+                  }}>
+                  <Icon name="plus" size={20} />
                 </View>
                 <View>
                   <View>
+                    <Text style={{fontSize: 14}}>Virtual Account Number</Text>
                     <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Samuel Suhi
+                      2389 081393877946
                     </Text>
-                    <Text style={{fontSize: 14}}>+62 813-8492-9994</Text>
                   </View>
                 </View>
               </View>
@@ -124,6 +135,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   headerUser: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
