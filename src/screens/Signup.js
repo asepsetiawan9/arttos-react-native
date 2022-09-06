@@ -13,7 +13,6 @@ import styles from '../styles/Global';
 import Input from '../components/Input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
-import ButtonAuth from '../components/ButtonAuth';
 import {register} from '../redux/asyncActions/auth';
 import {useDispatch, useSelector} from 'react-redux';
 

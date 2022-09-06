@@ -33,9 +33,9 @@ const HomeTab = () => {
           ),
           header: ({navigation}) => (
             <View style={styles.header}>
-              <View style={styles.root}>
+              {/* <View style={styles.root}>
                 <Text style={styles.headerTitle}>Hello</Text>
-              </View>
+              </View> */}
               <View style={{paddingVertical: 20, paddingHorizontal: 20}}>
                 <Input placeholder="Search receiver here" icon="search" />
               </View>

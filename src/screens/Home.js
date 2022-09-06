@@ -1,13 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import imageUser from '../assets/user.png';
-import {PRIMARY_COLOR} from './Constant';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProfile} from '../redux/asyncActions/profile';
+import {getTransactions} from '../redux/asyncActions/transactions';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -15,17 +15,14 @@ const Home = () => {
 
   const token = useSelector(state => state.auth.token);
   const profile = useSelector(state => state.profile.data);
+  const historyTransactions = useSelector(state => state.transactions.data);
 
   React.useEffect(() => {
     dispatch(getProfile(token));
+    dispatch(getTransactions(token));
     // console.log('ini data profile', profile.balance);
   }, []);
   return (
-    // <View style={styles.root}>
-    //   <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
-    //     <Text>Home</Text>
-    //   </TouchableOpacity>
-    // </View>
     <>
       <View style={styles.headerWrap}>
         <View style={styles.headerContent}>
@@ -64,7 +61,7 @@ const Home = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('tes')}
+            onPress={() => navigation.navigate('TopupAmount')}
             style={styles.buttonWrapper}>
             <View style={styles.button}>
               <Icon name="arrow-up" color="#2B909A" />
@@ -107,8 +104,24 @@ const Home = () => {
               <View>
                 <Text style={styles.amountList}>+Rp50.000</Text>
               </View>
+
+              {/* <FlatList
+                data={historyTransactions}
+                keyExtractor={(item, index) =>
+                  item.id + item.receiverfirstname + index
+                }
+                renderItem={({item}) => {
+                  return (
+                    <>
+                      <View>
+                        <View note={item.note} />
+                      </View>
+                    </>
+                  );
+                }}
+              /> */}
             </View>
-            <View style={{paddingBottom: 10}} />
+             <View style={{paddingBottom: 10}} />
             <View style={styles.listContent}>
               <View style={styles.listImgName}>
                 <View style={{paddingRight: 15}}>
@@ -170,7 +183,7 @@ const Home = () => {
               <View>
                 <Text style={styles.amountList}>+Rp50.000</Text>
               </View>
-            </View>
+            </View> 
           </View>
         </View>
       </View>

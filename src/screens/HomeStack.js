@@ -14,6 +14,7 @@ import PhoneManage from './PhoneManage';
 import AddPhone from './AddPhone';
 import PassChange from './PassChange';
 import PinChange from './PinChange';
+import TopupAmount from './TopupAmount';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,15 @@ const HomeStack = () => {
         }}
         name="TransInput"
         component={TransInput}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+        }}
+        name="TopupAmount"
+        component={TopupAmount}
       />
       <Stack.Screen
         options={{

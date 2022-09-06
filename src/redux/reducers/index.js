@@ -4,6 +4,7 @@ import {persistReducer} from 'redux-persist';
 
 import auth from './auth';
 import profile from './profile';
+import transactions from './transactions';
 
 const authConfig = {
   storage: AsyncStorage,
@@ -13,6 +14,7 @@ const authConfig = {
 const rootReducer = combineReducers({
   auth: persistReducer(authConfig, auth),
   profile,
+  transactions,
 });
 
 export default rootReducer;
