@@ -11,7 +11,7 @@ const transactions = createSlice({
   reducers: {},
   extraReducers: build => {
     build.addCase(getTransactions.fulfilled, (state, action) => {
-      console.log(action.payload.result);
+      // console.log(action.payload.result);
       state.data = action.payload.result;
     });
     // build.addCase(topup.fulfilled, (state, action) => {

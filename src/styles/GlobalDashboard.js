@@ -80,6 +80,13 @@ const Styles = StyleSheet.create({
     paddingTop: 10,
     paddingRight: 20,
   },
+  imageCard: {
+    paddingTop: 10,
+    paddingRight: 20,
+    width: 60,
+    height: 60,
+    borderRadius: 15,
+  },
   balance: {
     fontSize: 24,
     fontWeight: '700',
@@ -168,6 +175,11 @@ const Styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'green',
+  },
+  amountTransfer: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'red',
   },
   wrapBtn: {
     paddingVertical: 20,

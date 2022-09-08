@@ -15,3 +15,15 @@ export const getProfile = createAsyncThunk(
     }
   },
 );
+
+export const getUsers = createAsyncThunk('users/all-users', async token => {
+  const result = {};
+  try {
+    const {data} = await http(token).get('/users/all-users');
+    // console.log('iiiiinnnnnnnniiiiiiiiiiiii', data);
+    return data;
+  } catch (e) {
+    result.message = e.response.data?.message;
+    return result;
+  }
+});

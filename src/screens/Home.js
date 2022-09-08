@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -31,15 +38,15 @@ const Home = () => {
               <Image
                 source={{uri: profile.picture}}
                 style={{
-                  width: 80,
-                  height: 80,
+                  width: 70,
+                  height: 70,
                   aspectRatio: 1,
                   borderRadius: 10,
                 }}
               />
             </View>
             <View>
-              <Text style={{fontSize: 14}}>Balance</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Balance</Text>
               <Text style={styles.balance}>Rp {profile.balance}</Text>
             </View>
           </View>
@@ -85,105 +92,55 @@ const Home = () => {
             </View>
           </View>
           <View style={styles.wrappListContent}>
-            <View style={styles.listContent}>
-              <View style={styles.listImgName}>
-                <View style={{paddingRight: 15}}>
-                  <Image source={imageUser} style={styles.imageHeader} />
-                </View>
-                <View>
-                  <View>
-                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Samuel Suhi
-                    </Text>
-                  </View>
-                  <View>
-                    <Text>Transfer</Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.amountList}>+Rp50.000</Text>
-              </View>
-
-              {/* <FlatList
+            <SafeAreaView>
+              <FlatList
                 data={historyTransactions}
-                keyExtractor={(item, index) =>
-                  item.id + item.receiverfirstname + index
-                }
-                renderItem={({item}) => {
-                  return (
-                    <>
-                      <View>
-                        <View note={item.note} />
+                renderItem={({item}) => (
+                  <>
+                    <View style={styles.listContent}>
+                      <View style={styles.listImgName}>
+                        <View style={{paddingRight: 15}}>
+                          {item.recipientpic ? (
+                            <Image
+                              source={{uri: item.recipientpic}}
+                              style={styles.imageCard}
+                            />
+                          ) : (
+                            <Image
+                              source={imageUser}
+                              style={styles.imageCard}
+                            />
+                          )}
+                        </View>
+                        <View>
+                          <View>
+                            <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+                              {item.recipient_fullname}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text>{item.note}</Text>
+                          </View>
+                        </View>
                       </View>
-                    </>
-                  );
-                }}
-              /> */}
-            </View>
-             <View style={{paddingBottom: 10}} />
-            <View style={styles.listContent}>
-              <View style={styles.listImgName}>
-                <View style={{paddingRight: 15}}>
-                  <Image source={imageUser} style={styles.imageHeader} />
-                </View>
-                <View>
-                  <View>
-                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Samuel Suhi
-                    </Text>
-                  </View>
-                  <View>
-                    <Text>Transfer</Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.amountList}>+Rp50.000</Text>
-              </View>
-            </View>
-            <View style={{paddingBottom: 10}} />
-            <View style={styles.listContent}>
-              <View style={styles.listImgName}>
-                <View style={{paddingRight: 15}}>
-                  <Image source={imageUser} style={styles.imageHeader} />
-                </View>
-                <View>
-                  <View>
-                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Samuel Suhi
-                    </Text>
-                  </View>
-                  <View>
-                    <Text>Transfer</Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.amountList}>+Rp50.000</Text>
-              </View>
-            </View>
-            <View style={{paddingBottom: 10}} />
-            <View style={styles.listContent}>
-              <View style={styles.listImgName}>
-                <View style={{paddingRight: 15}}>
-                  <Image source={imageUser} style={styles.imageHeader} />
-                </View>
-                <View>
-                  <View>
-                    <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                      Samuel Suhi
-                    </Text>
-                  </View>
-                  <View>
-                    <Text>Transfer</Text>
-                  </View>
-                </View>
-              </View>
-              <View>
-                <Text style={styles.amountList}>+Rp50.000</Text>
-              </View>
-            </View> 
+                      <View>
+                        {item.recipient_id === item.sender_id ? (
+                          <Text style={styles.amountList}>
+                            +Rp {item.amount}
+                          </Text>
+                        ) : (
+                          <Text style={styles.amountTransfer}>
+                            -Rp {item.amount}
+                          </Text>
+                        )}
+                      </View>
+                    </View>
+                    <View style={{paddingBottom: 10}} />
+                  </>
+                )}
+                keyExtractor={item => item.id}
+              />
+            </SafeAreaView>
           </View>
         </View>
       </View>
