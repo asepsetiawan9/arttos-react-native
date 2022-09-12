@@ -15,7 +15,6 @@ export const topup = createAsyncThunk('transaction/top-up', async request => {
         },
       },
     );
-    console.log('cek cek cek cek cek', data.result);
     result.balance = data.result[0].balance;
     return result;
   } catch (e) {

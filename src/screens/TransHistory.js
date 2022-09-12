@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ScrollView,
   SafeAreaView,
   FlatList,
 } from 'react-native';
@@ -14,9 +13,6 @@ import styles from '../styles/GlobalDashboard';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
 import imageUser from '../assets/user.png';
-import graphic from '../assets/graphic.png';
-
-import {PRIMARY_COLOR} from './Constant';
 
 const TransHistory = () => {
   const navigation = useNavigation();
@@ -75,97 +71,6 @@ const TransHistory = () => {
             />
           </SafeAreaView>
         </View>
-
-        {/* <View style={{padding: 16}}>
-            <Text style={{fontSize: 18, fontWidth: '700', paddingTop: 30}}>
-              This Month
-            </Text>
-          </View>
-          <View style={styles.wrapMainContent}>
-            <View style={styles.wrappListContent}>
-              <View style={styles.listContent}>
-                <View style={styles.listImgName}>
-                  <View style={{paddingRight: 15}}>
-                    <Image source={imageUser} style={styles.imageHeader} />
-                  </View>
-                  <View>
-                    <View>
-                      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                        Samuel Suhi
-                      </Text>
-                    </View>
-                    <View>
-                      <Text>Transfer</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Text style={styles.amountList}>+Rp50.000</Text>
-                </View>
-              </View>
-              <View style={styles.listContent}>
-                <View style={styles.listImgName}>
-                  <View style={{paddingRight: 15}}>
-                    <Image source={imageUser} style={styles.imageHeader} />
-                  </View>
-                  <View>
-                    <View>
-                      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                        Samuel Suhi
-                      </Text>
-                    </View>
-                    <View>
-                      <Text>Transfer</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Text style={styles.amountList}>+Rp50.000</Text>
-                </View>
-              </View>
-              <View style={styles.listContent}>
-                <View style={styles.listImgName}>
-                  <View style={{paddingRight: 15}}>
-                    <Image source={imageUser} style={styles.imageHeader} />
-                  </View>
-                  <View>
-                    <View>
-                      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                        Samuel Suhi
-                      </Text>
-                    </View>
-                    <View>
-                      <Text>Transfer</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Text style={styles.amountList}>+Rp50.000</Text>
-                </View>
-              </View>
-              <View style={styles.listContent}>
-                <View style={styles.listImgName}>
-                  <View style={{paddingRight: 15}}>
-                    <Image source={imageUser} style={styles.imageHeader} />
-                  </View>
-                  <View>
-                    <View>
-                      <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                        Samuel Suhi
-                      </Text>
-                    </View>
-                    <View>
-                      <Text>Transfer</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Text style={styles.amountList}>+Rp50.000</Text>
-                </View>
-              </View>
-            </View>
-          </View> */}
-
         <View style={styles.wrapBtn}>
           <View style={styles.wrapBtnFoot}>
             <TouchableOpacity

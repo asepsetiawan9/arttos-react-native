@@ -19,7 +19,7 @@ export const getProfile = createAsyncThunk(
 export const getUsers = createAsyncThunk('users/all-users', async token => {
   const result = {};
   try {
-    const {data} = await http(token).get('/users/all-users');
+    const {data} = await http(token).get('/users/getallusers');
     // console.log('iiiiinnnnnnnniiiiiiiiiiiii', data);
     return data;
   } catch (e) {

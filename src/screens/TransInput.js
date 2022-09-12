@@ -1,41 +1,75 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
-  ScrollView,
+  StyleSheet,
   TextInput,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import imageUser from '../assets/user.png';
-import {PRIMARY_COLOR} from './Constant';
-import ButtonAuth from '../components/ButtonAuth';
-import Input from '../components/Input';
+import {useDispatch, useSelector} from 'react-redux';
+import {getUserById} from '../redux/asyncActions/transactions';
+import {inputAmount} from '../redux/reducers/transactions';
 
 const TransInput = () => {
   const navigation = useNavigation();
+  const [amount, setAmount] = useState('');
+  const [note, setNote] = useState('');
+  const recipient_id = useSelector(state => state.transactions.dataTransfer);
+  const recipient = useSelector(state => state.transactions.dataRecipient);
+  const profile = useSelector(state => state.profile.data);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getUserById(recipient_id.recipient_id));
+  }, []);
+  const today = new Date();
+  var currentdate = new Date();
+  var date =
+    currentdate.getDate() +
+    '-' +
+    (currentdate.getMonth() + 1) +
+    '-' +
+    currentdate.getFullYear();
+
+  var time =
+    currentdate.getHours() +
+    ':' +
+    currentdate.getMinutes() +
+    ':' +
+    currentdate.getSeconds();
+
+  const data = {
+    amount,
+    note,
+    time,
+    date,
+  };
+
+  const onInputAmount = () => {
+    dispatch(inputAmount(data));
+    navigation.navigate('TransConfirm');
+  };
   return (
-    // <View style={styles.root}>
-    //   <TouchableOpacity onPress={() => navigation.navigate('HomeStack')}>
-    //     <Text>Home</Text>
-    //   </TouchableOpacity>
-    // </View>
     <>
       <View style={styles.headerWrap}>
         <View style={styles.headerContent}>
           <View style={styles.headerContentInput}>
             <View style={styles.imageHeader}>
-              <Image source={imageUser} style={styles.imageHeader} />
+              <Image source={imageUser} style={styles.imageCard} />
             </View>
             <View>
               <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-                Samuel Suhi
+                {recipient?.fullname || 'Recipient Name'}
               </Text>
-              <Text style={{fontSize: 14}}>+62 813-8492-9994</Text>
+              <Text style={{fontSize: 14}}>
+                {recipient?.phone || 'Recipient Phone Number'}
+              </Text>
             </View>
           </View>
         </View>
@@ -52,28 +86,39 @@ const TransInput = () => {
             }}
             placeholder="0.00"
             keyboardType="numeric"
+            onChangeText={newAmount => setAmount(newAmount)}
+            defaultValue={amount}
           />
         </View>
         <View style={styles.inputWrapper}>
           <Text style={{fontSize: 16, color: '#1A374D', fontWeight: '700'}}>
-            Rp120.000 Available
+            Rp {profile[0]?.balance || '0'} Available
           </Text>
         </View>
-        <View
-          style={{flexDirection: 'column', width: 300, paddingBottom: 20}}>
+        <View style={{flexDirection: 'column', width: 300, paddingBottom: 20}}>
           <View>
             <TextInput
               style={{borderBottomWidth: 2}}
               placeholder="Add some notes"
+              onChangeText={newNote => setNote(newNote)}
+              defaultValue={note}
             />
           </View>
         </View>
-        <View>
-          <ButtonAuth NavigateTo="TransConfirm" nameText="Confirm" />
-        </View>
+        <TouchableOpacity onPress={onInputAmount} style={styles.buttonWrapper}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Confirmation</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </>
   );
 };
+
+const styleLocal = StyleSheet.create({
+  inputWrapper: {
+    marginBottom: 10,
+  },
+});
 
 export default TransInput;

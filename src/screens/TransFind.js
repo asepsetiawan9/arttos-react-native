@@ -10,18 +10,16 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import imageUser from '../assets/user.png';
 import {getUsers} from '../redux/asyncActions/profile';
 import {useDispatch, useSelector} from 'react-redux';
-
+import {selectRecipient} from '../redux/reducers/transactions';
 
 const TransDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const dataUser = useSelector(state => state.profile.data);
   const totalData = useSelector(state => state.profile.totalData);
-  console.log('aaskanskdnaskdnasknaskdnaskdnasd', totalData);
   const token = useSelector(state => state.auth.token);
   React.useEffect(() => {
     dispatch(getUsers(token));
@@ -35,7 +33,7 @@ const TransDetails = () => {
             Contact
           </Text>
           <Text style={{fontSize: 14, color: '#8F8F8F', paddingTop: 10}}>
-            {totalData.totalData || '0'} Contact Founds
+            {totalData ? totalData.totalData : '0'} Contact Founds
           </Text>
         </View>
         <View style={styles.wrapMainContent}>
@@ -46,7 +44,10 @@ const TransDetails = () => {
                 renderItem={({item}) => (
                   <>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('TransInput')}
+                      onPress={() => {
+                        dispatch(selectRecipient(item.id));
+                        navigation.navigate('TransInput');
+                      }}
                       style={styles.cardListContent}>
                       <View style={styles.cardListImgName}>
                         <View style={{paddingRight: 15}}>
@@ -71,6 +72,7 @@ const TransDetails = () => {
                           <View>
                             <Text>
                               {item.phone ? item.phone : 'Your Phone'}
+
                             </Text>
                           </View>
                         </View>

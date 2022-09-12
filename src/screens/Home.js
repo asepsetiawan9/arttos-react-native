@@ -23,6 +23,7 @@ const Home = () => {
   const token = useSelector(state => state.auth.token);
   const profile = useSelector(state => state.profile.data);
   const historyTransactions = useSelector(state => state.transactions.data);
+  // console.log('asdasdasdasdasdas cekcekeckcek', profile.picture);
 
   React.useEffect(() => {
     dispatch(getProfile(token));
