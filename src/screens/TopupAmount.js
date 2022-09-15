@@ -12,13 +12,14 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import styles from '../styles/GlobalDashboard';
 import imageUser from '../assets/user.png';
-import ButtonAuth from '../components/ButtonAuth';
 import {useDispatch, useSelector} from 'react-redux';
 import {topup} from '../redux/asyncActions/topup';
+import {getProfile} from '../redux/asyncActions/profile';
+import {getTransactions} from '../redux/asyncActions/transactions';
 
 const TopupAmount = () => {
   const navigation = useNavigation();
-  const profile = useSelector(state => state.profile.data);
+  const profile = useSelector(state => state.profile.dataProfile);
   const alertPopup = () =>
     Alert.alert('Topup', 'TopUp Succesfuly', [{text: 'OK'}]);
   const [balance, setBalance] = useState('');
@@ -31,7 +32,10 @@ const TopupAmount = () => {
 
   const onTopup = () => {
     dispatch(topup({data, token}));
+    dispatch(getProfile(token));
+    dispatch(getTransactions(token));
     dispatch(alertPopup);
+    navigation.navigate('Home');
   };
 
   return (
@@ -40,7 +44,14 @@ const TopupAmount = () => {
         <View style={styles.headerContent}>
           <View style={styles.headerContentInput}>
             <View style={styles.imageHeader}>
-              <Image source={imageUser} style={styles.imageHeader} />
+              {profile.picture ? (
+                <Image
+                  source={{uri: profile.picture}}
+                  style={styles.imageCard}
+                />
+              ) : (
+                <Image source={imageUser} style={styles.imageCard} />
+              )}
             </View>
             <View>
               <Text style={{fontSize: 16, fontWeight: 'bold'}}>

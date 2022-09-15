@@ -1,20 +1,29 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import styles from '../styles/GlobalDashboard';
+import stylesBtn from '../styles/Global';
 import imageUser from '../assets/user.png';
-import ButtonAuth from '../components/ButtonAuth';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {getTransactions} from '../redux/asyncActions/transactions';
+import {useNavigation} from '@react-navigation/native';
 
 const TransSuccess = () => {
   const detailInput = useSelector(state => state.transactions.dataTransfer);
   const dataRecipient = useSelector(state => state.transactions.dataRecipient);
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.token);
+  const navigation = useNavigation();
+
+  const onSuccess = () => {
+    dispatch(getTransactions(token));
+    navigation.navigate('Home');
+  };
+
   return (
     <>
       <View style={styleLocal.headerWrap}>
-        <Text style={styleLocal.textHeader}>
-          Transfer Success
-        </Text>
+        <Text style={styleLocal.textHeader}>Transfer Success</Text>
       </View>
 
       <View style={styles.wrapperInput}>
@@ -68,7 +77,7 @@ const TransSuccess = () => {
             paddingHorizontal: 150,
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
           }}>
-          <View >
+          <View>
             <Text style={{fontSize: 14}}>Notes</Text>
             <Text style={{fontSize: 18, fontWeight: '700'}}>
               {detailInput?.note || 'notes'}
@@ -99,9 +108,11 @@ const TransSuccess = () => {
           </View>
         </View>
 
-        <View style={{paddingTop: 30}}>
-          <ButtonAuth NavigateTo="Home" nameText="Back To Home" />
-        </View>
+        <TouchableOpacity style={stylesBtn.buttonWrapper} onPress={onSuccess}>
+          <View style={stylesBtn.button}>
+            <Text style={stylesBtn.buttonText}>Back to Home</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -131,9 +142,6 @@ const styleLocal = StyleSheet.create({
     paddingHorizontal: 50,
     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
   },
-  
 });
-
-
 
 export default TransSuccess;

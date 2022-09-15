@@ -21,12 +21,12 @@ const TransInput = () => {
   const [note, setNote] = useState('');
   const recipient_id = useSelector(state => state.transactions.dataTransfer);
   const recipient = useSelector(state => state.transactions.dataRecipient);
-  const profile = useSelector(state => state.profile.data);
+  const profile = useSelector(state => state.profile.dataProfile);
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getUserById(recipient_id.recipient_id));
+    dispatch(getUserById(recipient_id.recipient_id))
   }, []);
   const today = new Date();
   var currentdate = new Date();
@@ -92,7 +92,7 @@ const TransInput = () => {
         </View>
         <View style={styles.inputWrapper}>
           <Text style={{fontSize: 16, color: '#1A374D', fontWeight: '700'}}>
-            Rp {profile[0]?.balance || '0'} Available
+            Rp {profile?.balance || '0'} Available
           </Text>
         </View>
         <View style={{flexDirection: 'column', width: 300, paddingBottom: 20}}>

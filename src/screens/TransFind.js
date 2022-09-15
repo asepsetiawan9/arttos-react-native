@@ -18,7 +18,7 @@ import {selectRecipient} from '../redux/reducers/transactions';
 const TransDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const dataUser = useSelector(state => state.profile.data);
+  const dataUser = useSelector(state => state.profile.dataUser);
   const totalData = useSelector(state => state.profile.totalData);
   const token = useSelector(state => state.auth.token);
   React.useEffect(() => {

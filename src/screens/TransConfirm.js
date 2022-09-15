@@ -9,6 +9,8 @@ import {useSelector} from 'react-redux';
 const TransConfirm = () => {
   const detailInput = useSelector(state => state.transactions.dataTransfer);
   const dataRecipient = useSelector(state => state.transactions.dataRecipient);
+  const dataSender = useSelector(state => state.profile.dataProfile);
+  // console.log('ini data sender', dataSender)
   return (
     <>
       <View style={styles.headerWrap}>
@@ -51,7 +53,7 @@ const TransConfirm = () => {
             <View style={styles.cardConfirm}>
               <Text style={{fontSize: 14}}>Balance Left</Text>
               <Text style={{fontSize: 18, fontWeight: '700'}}>
-                Rp {dataRecipient?.balance || '0'}
+                Rp {dataSender?.balance || '0'}
               </Text>
             </View>
           </View>

@@ -21,7 +21,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const token = useSelector(state => state.auth.token);
-  const profile = useSelector(state => state.profile.data);
+  const profile = useSelector(state => state.profile.dataProfile);
   const historyTransactions = useSelector(state => state.transactions.data);
 
   React.useEffect(() => {
@@ -57,7 +57,7 @@ const Home = () => {
       <View style={styles.contentWrap}>
         <View style={styles.contentWrapIn}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('tes')}
+            onPress={() => navigation.navigate('TransFind')}
             style={styles.buttonWrapper}>
             <View style={styles.button}>
               <Icon name="arrow-up" color="#2B909A" />

@@ -3,12 +3,12 @@ import http from '../../helpers/http';
 import qs from 'qs';
 
 export const getTransactions = createAsyncThunk(
-  'transactions/trans-history?limit=50',
+  'transactions/trans-history',
   async token => {
     const result = {};
     try {
       const {data} = await http(token).get(
-        '/transactions/trans-history?limit=50',
+        'transactions/trans-history?limit=50&sortType=DESC',
       );
       return data;
     } catch (e) {
