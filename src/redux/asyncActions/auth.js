@@ -13,6 +13,7 @@ export const login = createAsyncThunk('auth/login', async request => {
     });
     result.successMsg = data.message;
     result.token = data.result[0].token;
+    result.pin = data.result[0].pin;
     return result;
   } catch (e) {
     console.log('tampil apabila koneksi gagal');

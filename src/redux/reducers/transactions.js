@@ -16,7 +16,6 @@ const transactions = createSlice({
       state.dataTransfer.recipient_id = action.payload;
     },
     inputAmount: (state, action) => {
-      console.log(action.payload);
       state.dataTransfer.amount = action.payload.amount;
       state.dataTransfer.note = action.payload.note;
       state.dataTransfer.time = action.payload.time;

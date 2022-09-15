@@ -15,6 +15,8 @@ import AddPhone from './AddPhone';
 import PassChange from './PassChange';
 import PinChange from './PinChange';
 import TopupAmount from './TopupAmount';
+import TransSuccess from './TransSuccess';
+import TransFail from './TransFail';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,6 +73,26 @@ const HomeStack = () => {
         }}
         name="PinConfirm"
         component={PinConfirm}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+          headerShown: false
+        }}
+        name="TransFail"
+        component={TransFail}
+      />
+      <Stack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: '#2B909A',
+          },
+          headerShown: false
+        }}
+        name="TransSuccess"
+        component={TransSuccess}
       />
       <Stack.Screen
         options={{headerShown: false}}

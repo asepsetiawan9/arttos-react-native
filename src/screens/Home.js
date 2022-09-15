@@ -23,12 +23,10 @@ const Home = () => {
   const token = useSelector(state => state.auth.token);
   const profile = useSelector(state => state.profile.data);
   const historyTransactions = useSelector(state => state.transactions.data);
-  // console.log('asdasdasdasdasdas cekcekeckcek', profile.picture);
 
   React.useEffect(() => {
     dispatch(getProfile(token));
     dispatch(getTransactions(token));
-    // console.log('ini data profile', profile.balance);
   }, []);
   return (
     <>
@@ -36,15 +34,14 @@ const Home = () => {
         <View style={styles.headerContent}>
           <View style={styles.headerContent1}>
             <View style={styles.imageHeader}>
-              <Image
-                source={{uri: profile.picture}}
-                style={{
-                  width: 70,
-                  height: 70,
-                  aspectRatio: 1,
-                  borderRadius: 10,
-                }}
-              />
+              {profile.picture ? (
+                <Image
+                  source={{uri: profile.picture}}
+                  style={styles.imageCard}
+                />
+              ) : (
+                <Image source={imageUser} style={styles.imageCard} />
+              )}
             </View>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>Balance</Text>

@@ -32,3 +32,26 @@ export const getUserById = createAsyncThunk(
     }
   },
 );
+
+export const transferMoney = createAsyncThunk(
+  'transactions/transfer',
+  async request => {
+    const result = {};
+    try {
+      const send = qs.stringify(request.data);
+      const {data} = await http(request.token).post(
+        '/transactions/transfer',
+        send,
+        {
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+        },
+      );
+      return data.result;
+    } catch (e) {
+      result.errorMsg = e.response.data.message;
+      return result;
+    }
+  },
+);
