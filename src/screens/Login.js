@@ -21,7 +21,7 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-
+  const [showText, setShow] = React.useState(false);
   const data = {
     email,
     password,
@@ -51,7 +51,7 @@ const Login = ({navigation}) => {
             <Text style={styles.textTittle}> Login </Text>
             <Text style={styles.text}>
               Login to your existing account to access all the features in
-              Zwallet.
+              Arttos.
             </Text>
           </View>
           <View style={styleLocal.inputWrapper}>
@@ -68,13 +68,6 @@ const Login = ({navigation}) => {
                 />
               </View>
             </View>
-            {/* <Input
-              placeholder="Enter your e-mail"
-              icon="user"
-              type="email-address"
-              onChange={newEmail => setEmail(newEmail)}
-              defaultValuse={email}
-            /> */}
           </View>
           <View style={styleLocal.inputWrapper}>
             <View style={stylesForm.wrapper}>
@@ -87,20 +80,20 @@ const Login = ({navigation}) => {
                   scure={true}
                   onChangeText={passwordNew => setPassword(passwordNew)}
                   initialValue={password}
+                  secureTextEntry={!showText}
                 />
               </View>
+              <TouchableOpacity onPress={() => setShow(!showText)}>
+                <View style={stylesForm.iconWrapper}>
+                  <Icon
+                    name={showText ? 'eye-slash' : 'eye'}
+                    size={20}
+                    color="#A9A9A9"
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
-            {/* <Input
-              placeholder="Enter your password"
-              icon="lock"
-              scure={true}
-              onChangeText={newPassword => setPassword(newPassword)}
-              defaultValue={password}
-            /> */}
           </View>
-          {/* <TouchableOpacity onPress={this.onPressSimpleAlert}>
-          <Text style={styles.toucaButtonTxt}>simple Alert</Text>
-        </TouchableOpacity> */}
           <View
             style={{alignItems: 'flex-end', paddingBottom: 50, paddingTop: 10}}>
             <TouchableOpacity onPress={() => navigation.navigate('Passforgot')}>

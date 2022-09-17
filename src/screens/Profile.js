@@ -17,10 +17,7 @@ import {logout} from '../redux/reducers/auth';
 
 const Profile = () => {
   const dispatch = useDispatch();
-
-  const token = useSelector(state => state.auth.token);
-  const profile = useSelector(state => state.profile.data);
-  // console.log('ini profile', profile.fullname);
+  const profile = useSelector(state => state.profile.dataProfile);
 
   const onLogout = () => {
     dispatch(logout());
