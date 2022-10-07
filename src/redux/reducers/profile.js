@@ -1,5 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getProfile, uploadImage, getUsers} from '../asyncActions/profile';
+import {
+  getProfile,
+  uploadImage,
+  getUsers,
+  getAllUsers,
+} from '../asyncActions/profile';
 import {topup} from '../asyncActions/topup';
 
 const initialState = {
@@ -8,7 +13,9 @@ const initialState = {
   successMsg: null,
   dataProfile: {},
   dataUser: [],
+  dataAllUser: [],
   totalData: null,
+  tabelInfo: {},
 };
 
 const profile = createSlice({
@@ -21,10 +28,6 @@ const profile = createSlice({
     });
     build.addCase(topup.fulfilled, (state, action) => {
       state.data.balance = action.payload.balance;
-    });
-    build.addCase(getUsers.fulfilled, (state, action) => {
-      state.totalData = action.payload.infoPage;
-      state.dataUser = action.payload.result;
     });
     build.addCase(uploadImage.pending, state => {
       state.errorMsg = null;
@@ -39,8 +42,16 @@ const profile = createSlice({
         state.errorMsg = 'upload fail';
       }
     });
+    build.addCase(getAllUsers.fulfilled, (state, action) => {
+      state.tabelInfo = action.payload.infoPage;
+      state.dataAllUser = action.payload.result;
+    });
+    // build.addCase(getUsers.fulfilled, (state, action) => {
+    //   state.totalData = action.payload.infoPage;
+    //   state.dataUser = action.payload.result;
+    // });
   },
 });
 
-export {getProfile, getUsers, uploadImage};
+export {getProfile, getAllUsers, getUsers, uploadImage};
 export default profile.reducer;

@@ -47,11 +47,31 @@ export const uploadImage = createAsyncThunk(
           },
         },
       );
-      // console.log('ini dari actionsadsad', data);
       return data;
     } catch (e) {
-      // console.log('error muncullah');
       result.errorMsg = e.response.data.message;
+      return result;
+    }
+  },
+);
+
+export const getAllUsers = createAsyncThunk(
+  'users/all-users',
+  async ({token, search, limit, page}) => {
+    const result = {};
+    // console.log('ini search', search);
+    limit = parseInt(limit) || 5;
+    page = parseInt(page) || 1;
+    try {
+      const query = new URLSearchParams({
+        search,
+        limit,
+        page,
+      }).toString();
+      const {data} = await http(token).get(`/users/getallusers?${query}`);
+      return data;
+    } catch (e) {
+      result.message = e.response.data?.message;
       return result;
     }
   },

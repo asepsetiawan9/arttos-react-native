@@ -31,16 +31,17 @@ const HomeTab = () => {
           tabBarIcon: ({focused, color, size}) => (
             <Icon name="file-text" color={color} size={size} />
           ),
-          header: ({navigation}) => (
-            <View style={styles.header}>
-              {/* <View style={styles.root}>
-                <Text style={styles.headerTitle}>Hello</Text>
-              </View> */}
-              <View style={{paddingVertical: 20, paddingHorizontal: 20}}>
-                <Input placeholder="Search receiver here" icon="search" />
-              </View>
-            </View>
-          ),
+          headerShown: false,
+          // header: ({navigation}) => (
+          //   <View style={styles.header}>
+          //     {/* <View style={styles.root}>
+          //       <Text style={styles.headerTitle}>Hello</Text>
+          //     </View> */}
+          //     <View style={{paddingVertical: 20, paddingHorizontal: 20}}>
+          //       <Input placeholder="Search receiver here" icon="search" />
+          //     </View>
+          //   </View>
+          // ),
         }}
         name="TransFind"
         component={TransFind}
