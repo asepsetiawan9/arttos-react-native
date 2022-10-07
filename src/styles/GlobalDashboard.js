@@ -212,10 +212,26 @@ const Styles = StyleSheet.create({
     paddingHorizontal: 30,
     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
   },
-  // cardConfirm: {
-  //   alignItems: 'center',
-    
-  // },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+  },
+  innerModal: {
+    backgroundColor: 'white',
+    width: Dimensions.get('screen').width - 100,
+    padding: 10,
+    borderRadius: 10,
+  },
+  selectBtn: {
+    height: 40,
+    justifyContent: 'center',
+  },
+  divider: {
+    height: 1.5,
+    backgroundColor: 'black',
+  },
 });
 
 export default Styles;

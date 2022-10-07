@@ -95,6 +95,7 @@ const Home = () => {
                 data={historyTransactions}
                 renderItem={({item}) => (
                   <>
+                  {/* {console.log(item.recipientpic)} */}
                     <View style={styles.listContent}>
                       <View style={styles.listImgName}>
                         <View style={{paddingRight: 15}}>

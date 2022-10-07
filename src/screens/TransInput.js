@@ -26,7 +26,7 @@ const TransInput = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getUserById(recipient_id.recipient_id))
+    dispatch(getUserById(recipient_id.recipient_id));
   }, []);
   const today = new Date();
   var currentdate = new Date();
