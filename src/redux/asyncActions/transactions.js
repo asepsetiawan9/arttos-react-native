@@ -4,12 +4,19 @@ import qs from 'qs';
 
 export const getTransactions = createAsyncThunk(
   'transactions/trans-history',
-  async token => {
+  async ({token, limit, page}) => {
     const result = {};
+    limit = parseInt(limit) || 5;
+    page = parseInt(page) || 1;
     try {
+      const query = new URLSearchParams({
+        limit,
+        page,
+      }).toString();
       const {data} = await http(token).get(
-        'transactions/trans-history?limit=50&sortType=DESC',
+        `transactions/trans-history?${query}`,
       );
+      console.log('ini dari action', data);
       return data;
     } catch (e) {
       result.message = e.response.data?.message;
@@ -17,6 +24,7 @@ export const getTransactions = createAsyncThunk(
     }
   },
 );
+
 
 export const getUserById = createAsyncThunk(
   'users/getDataUser',

@@ -23,11 +23,13 @@ const Home = () => {
   const token = useSelector(state => state.auth.token);
   const profile = useSelector(state => state.profile.dataProfile);
   const historyTransactions = useSelector(state => state.transactions.data);
+  const [limit, setLimit] = React.useState(5);
+  const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
     dispatch(getProfile(token));
-    dispatch(getTransactions(token));
-  }, []);
+    dispatch(getTransactions({token, limit, page}));
+  }, [token, page, limit, dispatch]);
   return (
     <>
       <View style={styles.headerWrap}>
