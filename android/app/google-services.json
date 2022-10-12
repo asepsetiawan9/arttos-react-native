@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "171649559583",
+    "project_id": "arttos-e3b77",
+    "storage_bucket": "arttos-e3b77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171649559583:android:73a4dfcdf0d2016c4ef92a",
+        "android_client_info": {
+          "package_name": "com.fazztrack.arrtos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "171649559583-1ofhv0lmbv28j6fm15n1dk109levsde9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjD86AF0d3JnSYNuYzaWGrXv8WAndp90M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "171649559583-1ofhv0lmbv28j6fm15n1dk109levsde9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
