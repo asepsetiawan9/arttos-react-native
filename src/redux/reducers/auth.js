@@ -5,12 +5,16 @@ const initialState = {
   token: null,
   errorMsg: null,
   successMsg: null,
+  deviceToken: null,
 };
 
 const auth = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    saveToken: (state, action) => {
+      state.deviceToken = action.payload
+    },
     logout: state => {
       return initialState;
     },
@@ -44,5 +48,5 @@ const auth = createSlice({
 });
 
 export {login};
-export const {logout} = auth.actions;
+export const {logout, saveToken} = auth.actions;
 export default auth.reducer;
