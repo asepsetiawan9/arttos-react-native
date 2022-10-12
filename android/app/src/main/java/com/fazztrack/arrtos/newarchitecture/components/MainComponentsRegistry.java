@@ -1,4 +1,4 @@
-package com.arttos.newarchitecture.components;
+package com.fazztrack.arrtos.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
